@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Styles {
+  id            Int             @id @default(autoincrement())
+  name          String
+  description   String
+  styleVariants StyleVariants[]
+}
+
+model StyleVariants {
+  id           Int            @id @default(autoincrement())
+  color        String
+  price        Float
+  variantSizes VariantSizes[]
+  Styles       Styles?        @relation(fields: [styleId], references: [id])
+  styleId     Int?
+}
+
+model VariantSizes {
+  id              Int            @id @default(autoincrement())
+  size            String
+  stock           Int
+  StyleVariants   StyleVariants? @relation(fields: [styleVariantId], references: [id])
+  styleVariantId Int?
+}
