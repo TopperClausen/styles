@@ -7,12 +7,12 @@ const prisma = new PrismaClient();
 // Index
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     const styles = await prisma.styles.findMany({ include: { styleVariants: true } });
-    res.json({ styles: styles });
+    res.status(200).json({ styles: styles });
 });
 
 // Show
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-    const style = await prisma.styles.findFirst({ where: { id: parseInt(req.params.id) } });
+    const style = await prisma.styles.findFirst({ where: { id: parseInt(req.params.id) }, include: { styleVariants: true } });
     if (!style) {
         res.status(404).json({ message: "Not found", style: null });
     } else  {
@@ -25,7 +25,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     const style = await prisma.styles.create({
         data: req.body.style
     });
-    res.status(201).json({ style });
+    res.status(201).json({ message: 'success', style });
 });
 
 //update
