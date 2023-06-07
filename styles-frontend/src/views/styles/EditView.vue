@@ -40,10 +40,15 @@ const submit = (event: any) => {
 
     axios.put(`http://localhost:3000/API/styles/${route.params.id}`, { style: model.value })
         .then((response) => {
+            flash.setMessage("Style updated");
             router.push("/styles");
         })
         .catch( err => {
-            
+            if (err.response.data.message) {
+                flash.setError(err.response.data.message);
+            }else {
+                flash.setError("Something went wrong");
+            }
         });
 }
 </script>
