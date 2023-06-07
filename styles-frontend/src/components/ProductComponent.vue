@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Style } from '../schemas/style';
 import StorageComponent from './StorageComponent.vue';
+import ButtonComponent from './ButtonComponent.vue';
 
 export interface Props {
     tag?: string,
@@ -24,6 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
                 <p class="font-bold text-2xl"> {{ style.price }} .- </p>
                 <a href="#" class="mt-2 text-blue-700 hover:underline"> Se lager </a>
             </div>
+            <ButtonComponent :is-button="false" :to="`styles/${style.id}`" class="inline-block w-full text-center mt-2"> Se mere </ButtonComponent>
         </div>
     </component>
 </template>

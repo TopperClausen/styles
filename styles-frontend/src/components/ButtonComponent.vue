@@ -25,7 +25,7 @@ const buttonClasses = () => {
 </script>
 
 <template>
-    <button v-if="isButton" :class="buttonClasses()" @click="click">
+    <button v-if="isButton" :class="buttonClasses() + ` ${$attrs.class}`" @click="click">
         <slot></slot>
     </button>
     <router-link v-else :class="buttonClasses()" :to="to"> <slot></slot> </router-link>
