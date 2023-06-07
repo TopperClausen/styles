@@ -5,6 +5,9 @@ import { ref } from 'vue';
 import axios from 'axios';
 import router from '@/router';
 import { useRoute } from 'vue-router'
+import { useFlashStore } from '@/stores/flash';
+
+const flash = useFlashStore();
 
 const model = ref({
     id: undefined,
@@ -19,12 +22,14 @@ const route = useRoute();
 const populateModel = () => {
     axios.get(`http://localhost:3000/API/styles/${route.params.id}`)
         .then((response) => {
-            console.log(response.data.style);
             model.value = response.data.style;
-            console.log(model.value)
         })
-        .catch((error) => {
-            console.log(error);
+        .catch((err) => {
+            if (err.response.data.message) {
+                flash.setError(err.response.data.message);
+            }else {
+                flash.setError("Something went wrong");
+            }
         });
 }
 
@@ -38,7 +43,7 @@ const submit = (event: any) => {
             router.push("/styles");
         })
         .catch( err => {
-            console.log(err);
+            
         });
 }
 </script>

@@ -5,6 +5,7 @@ import type { Style } from '@/schemas/style';
 import { ref } from 'vue';
 import axios from 'axios';
 import router from '@/router';
+import { useFlashStore } from '@/stores/flash';
 
 const model = ref({
     id: undefined,
@@ -14,17 +15,20 @@ const model = ref({
     price: 0
 });
 
-let error;
+const flash = useFlashStore();
 
 const submit = (event: any) => {
     event.preventDefault();
-
     axios.post('http://localhost:3000/API/styles', { style: model.value })
         .then((response) => {
             router.push("/styles");
         })
         .catch( err => {
-            error = err.data.message;
+            if (err.response.data.message) {
+                flash.setError(err.response.data.message);
+            }else {
+                flash.setError("Something went wrong");
+            }
         });
 }
 </script>
