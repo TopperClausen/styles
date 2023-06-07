@@ -36,7 +36,7 @@ populateModel();
             <span class="text-sm font-light"> Stylenumber #{{ style.id }} </span>
             <div class="md:flex">
                 <div class="md:w-2/3">
-                    <img :src="style.imageUrl" class="w-64 h-64 mt-2" alt="Billede af produktet">
+                    <img :src="style.imageUrl" class="w-96 h-96 mt-2" alt="Billede af produktet">
                 </div>
                 <div class="md:w-1/3">
                     <div class="bg-gray-200 w-full rounded py-2 px-3">
