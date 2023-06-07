@@ -24,20 +24,11 @@ const input = computed({
     }
 });
 
-const hiddenClass = computed({
-    get() {
-        return props.hidden ? 'hidden' : '';
-    },
-    set() {
-        return;
-    }
-});
-
 </script>
 
 <template>
     <input :type="props.type"
-        :class="`${hiddenClass} appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-blue-600 leading-tight focus:outline-none focus:shadow-outline`" 
+        :class="`${$attrs.class} appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-blue-600 leading-tight focus:outline-none focus:shadow-outline`" 
         v-model="input" 
         :placeholder="placeholder"
     />

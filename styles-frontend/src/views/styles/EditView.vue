@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import InputComponent from '@/components/InputComponent.vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
-import type { Style } from '@/schemas/style';
 import { ref } from 'vue';
 import axios from 'axios';
 import router from '@/router';
@@ -51,8 +50,6 @@ const submit = (event: any) => {
                 <h3 class="text-lg"> Opret Style </h3>
             </div>
             <form action="" class="space-y-2 px-1 py-2">
-                
-                <InputComponent placeholder="" v-model="model.id" :hidden="true" />
                 <InputComponent placeholder="Name" v-model="model.name" />
                 <InputComponent placeholder="Description" type="rich-text" v-model="model.description" />
                 <InputComponent placeholder="Url for image" type="url" v-model="model.imageUrl" />

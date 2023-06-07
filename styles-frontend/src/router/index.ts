@@ -9,6 +9,7 @@ const router = createRouter({
     { path: '/styles', name: 'styles', component: () => import('../views/styles/index.vue') },
     { path: '/styles/new', name: 'new-style', component: () => import('../views/styles/NewView.vue') },
     { path: '/styles/edit/:id', name: 'edit-style', component: () => import('../views/styles/EditView.vue') },
+    { path: '/styles/:id', name: 'style', component: () => import('../views/styles/ShowView.vue') }
   ]
 })
 
